@@ -21,7 +21,11 @@ namespace Polimorfizam
 		{
 			if (idx == this.entries.Length) return false;
 
-
+			foreach (CompetitionEntrycs e in entries)
+			{
+				if (e != null && e.Equals(entry))
+					return false; 
+			}
 			entries[idx++] = entry;
 			return true;
 		}
@@ -52,7 +56,10 @@ namespace Polimorfizam
 
 			retVal[idx++] = entry.Teacher;
 
-			
+			foreach (Student s in entry.Students)
+			{
+				retVal[idx++] = s;  
+			}
 
 			return retVal;
 		}

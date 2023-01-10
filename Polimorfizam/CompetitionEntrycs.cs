@@ -10,7 +10,7 @@ namespace Polimorfizam
     {
         Teacher teacher;
         Dessert dessert;
-        Student student;
+        private Student[] students;
         private int[] ratings;
         private int idx;
         public CompetitionEntrycs(Teacher teacher, Dessert dessert)
@@ -19,15 +19,22 @@ namespace Polimorfizam
             this.dessert = dessert;
         }
 
-        public bool addEntry(Teacher teacher, int number)
+        public bool addEntry(Student student, int number)
         {
             if (idx == 3)
             {
                 return false;
             }
-            else
-                return true;
-            
+            foreach (Student s in students)
+            {
+                if (s != null && s.Equals(student))
+                    return false; 
+            }
+            Students[idx] = student;
+            ratings[idx] = number;
+            idx++;
+            return true;
+
 
         }
         public double getRating()
@@ -43,8 +50,8 @@ namespace Polimorfizam
 
         internal Teacher Teacher { get => teacher; set => teacher = value; }
         internal Dessert Dessert { get => dessert; set => dessert = value; }
-        internal Student Student { get => student; set => student = value; }
         public int[] Ratings { get => ratings; set => ratings = value; }
         public int Idx { get => idx; set => idx = value; }
+        public Student[] Students { get => students; set => students = value; }
     }
 }
